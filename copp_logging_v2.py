@@ -1,7 +1,7 @@
 #!/bin/env python
 #-*- coding: utf-8 -*-
 
-import copp_check as copp
+import copp_check as Copp
 from time import sleep
 from syslog import syslog
 
@@ -30,7 +30,7 @@ def subtract(packet_list1, packet_list2):
     return change_list
 
 def write_syslog(changed_pk_list, check_term_str) :
-    class_list = copp()
+    class_list = Copp()
 
     i = 0
     packet_changed = False
@@ -46,7 +46,7 @@ def write_syslog(changed_pk_list, check_term_str) :
         write_syslog_policy()
 
 def write_syslog_policy() :
-    copp = copp()
+    copp = Copp()
     if copp == "기본값" :
         log = "추가로 현재 CoPP는 시스코에서 권고하는 기본값입니다."
     else :
@@ -59,9 +59,9 @@ if __name__ == "__main__":
     # 경과 시간을 문자열(x시 x분 x초)로 변경
     check_term_str = get_term_str(check_term)
     
-    original_pk = copp()
+    original_pk = Copp()
     sleep(check_term)
-    changed_pk = subtract(original_pk, copp())
+    changed_pk = subtract(original_pk, Copp())
     
     #드랍량을 syslog에 남김
     write_syslog(changed_pk, check_term_str)
